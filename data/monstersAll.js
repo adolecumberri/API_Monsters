@@ -1,4 +1,4 @@
-[
+let allMonsters = [
     {
         "name": "angel",
         "evolution": false,

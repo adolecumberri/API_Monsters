@@ -43,8 +43,6 @@ let createGradeVersion = (data, grade) => {
         let d = data[className];
         let v = dicctionary[grade];
 
-
-
         let newCritDmg = Math.floor((d.critDmg + d.critDmg * (v.critDmg / 100)) * 100) / 100;
         let newAccuracy = Math.floor((d.accuracy + d.accuracy * (v.accuracy / 100)) * 100) / 100;
 

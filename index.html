@@ -12,6 +12,7 @@
     <script src="data/grade3.js"></script>
     <script src="data/grade4.js"></script>
     <script src="data/statsBasics.js"></script>
+    <script src="data/monstersAll.js"></script>
   </head>
   <body>
     <div id="container">
@@ -22,15 +23,13 @@
   
   <script src="controller/utils.js"></script>
   <script>
-  let a = createMonsterStats();
-  let b = createGradeVersion(a, "grade1");
-  let c = createGradeVersion(a, "grade2");
-  let d = createGradeVersion(a, "grade3");
-  let e = createGradeVersion(a, "grade4");
+      
+  console.log(allMonsters);
+  let basicsStats = createMonsterStats();
+  let g1Stats = createGradeVersion(basicsStats, "grade1");
+  let g2Statsc = createGradeVersion(basicsStats, "grade2");
+  let g3Stats = createGradeVersion(basicsStats, "grade3");
+  let g4Stats = createGradeVersion(basicsStats, "grade4");
 
-  console.log({b});
-  console.log({c});
-  console.log({d});
-  console.log({e});
   </script>
 </html>
