@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <!-- compiling example:  https://www.typescriptlang.org/docs/handbook/typescript-tooling-in-5-minutes.html-->
+    <script src="data/grade1.js"></script>
+    <script src="data/grade2.js"></script>
+    <script src="data/grade3.js"></script>
+    <script src="data/grade4.js"></script>
+    <script src="data/statsBasics.js"></script>
+  </head>
+  <body>
+    <div id="container">
+      <div class="sub-container1"></div>
+      <div class="sub-container2"></div>
+    </div>
+  </body>
+  
+  <script src="controller/utils.js"></script>
+  <script>
+  let a = createMonsterStats();
+  let b = createGradeVersion(a, "grade1");
+  let c = createGradeVersion(a, "grade2");
+  let d = createGradeVersion(a, "grade3");
+  let e = createGradeVersion(a, "grade4");
+
+  console.log({b});
+  console.log({c});
+  console.log({d});
+  console.log({e});
+  </script>
+</html>
