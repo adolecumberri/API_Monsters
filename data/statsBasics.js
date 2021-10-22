@@ -1,7 +1,7 @@
 const HERO_STATS = [
     {
-      "id_class": null,
-      "className": null,
+      "id_class": "0",
+      "className": "None",
       "hp": 70,
       "dmg": 10,
       "def": 7,

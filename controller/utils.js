@@ -1,8 +1,10 @@
 let createMonsterStats = () => {
 
     let monstersBase = HERO_STATS[0];
-    let monsterCommon = HERO_STATS.slice(1);
+    let monsterCommon = HERO_STATS;
     let solution = {};
+
+
 
     monsterCommon.forEach(
         (
@@ -17,22 +19,41 @@ let createMonsterStats = () => {
                 evasion,
                 hp,
                 reg
-            }
+            }, i
         ) => {
-            solution[className] = {
-                accuracy: Math.floor((accuracy + monstersBase.accuracy) * 100) / 100,
-                att_interval: att_interval + monstersBase.att_interval,
-                crit: Math.floor((crit + monstersBase.crit) * 100) / 100,
-                critDmg: critDmg + monstersBase.critDmg,
-                def: def + monstersBase.def,
-                dmg: dmg + monstersBase.dmg,
-                evasion: Math.floor((evasion + monstersBase.evasion) * 100) / 100,
-                hp: hp + monstersBase.hp,
-                reg: Math.floor((reg + monstersBase.reg) * 100) / 100,
-            };
+            if(i > 0){
+                solution[className] = {
+                    accuracy: Math.floor((accuracy + monstersBase.accuracy) * 100) / 100,
+                    att_interval: att_interval + monstersBase.att_interval,
+                    crit: Math.floor((crit + monstersBase.crit) * 100) / 100,
+                    critDmg: critDmg + monstersBase.critDmg,
+                    def: def + monstersBase.def,
+                    dmg: dmg + monstersBase.dmg,
+                    evasion: Math.floor((evasion + monstersBase.evasion) * 100) / 100,
+                    hp: hp + monstersBase.hp,
+                    reg: Math.floor((reg + monstersBase.reg) * 100) / 100,
+                };
+            }else {
+                //Parche para añadir las estadisticasbases como una categoría
+                
+                solution['None'] = {
+                    accuracy: Math.floor((accuracy) * 100) / 100,
+                    att_interval: att_interval,
+                    crit: Math.floor((crit) * 100) / 100,
+                    critDmg: critDmg,
+                    def: def,
+                    dmg: dmg,
+                    evasion: Math.floor((evasion) * 100) / 100,
+                    hp: hp,
+                    reg: Math.floor((reg) * 100) / 100,
+
+                }
+            }
+           
         }
     );
 
+    
     return solution
 }
 
