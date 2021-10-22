@@ -13,6 +13,7 @@
     <script src="data/grade4.js"></script>
     <script src="data/statsBasics.js"></script>
     <script src="data/monstersAll.js"></script>
+    <script src="data/asignacion.js"></script>
   </head>
   <body>
     <div id="container">
@@ -24,12 +25,20 @@
   <script src="controller/utils.js"></script>
   <script>
       
-  console.log(allMonsters);
   let basicsStats = createMonsterStats();
   let g1Stats = createGradeVersion(basicsStats, "grade1");
-  let g2Statsc = createGradeVersion(basicsStats, "grade2");
+  let g2Stats = createGradeVersion(basicsStats, "grade2");
   let g3Stats = createGradeVersion(basicsStats, "grade3");
   let g4Stats = createGradeVersion(basicsStats, "grade4");
 
+  let grades = {
+      grade1: g1Stats,
+      grade2: g2Stats,
+      grade3: g3Stats,
+      grade4: g4Stats,
+  }
+  let b = asignValuesByGrade(grades, allMonsters);
+
+  console.log(b);
   </script>
 </html>

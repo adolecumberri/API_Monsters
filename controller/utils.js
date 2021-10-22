@@ -35,7 +35,7 @@ let createMonsterStats = () => {
                 };
             }else {
                 //Parche para añadir las estadisticasbases como una categoría
-                
+
                 solution['None'] = {
                     accuracy: Math.floor((accuracy) * 100) / 100,
                     att_interval: att_interval,
@@ -83,10 +83,25 @@ let createGradeVersion = (data, grade) => {
 
 
     return solution
-}
+};
+
+let asignValuesByGrade = (grades, monsters) => {
+    // console.log(asignacion, grades, monsters);
+    let solution = [];
 
 
+    monsters.forEach( (monster) => {
+        let heroType = asignacion[monster.name];
+        let currentGrade = grades[`grade${monster.grade}`][heroType];
+        // console.log(currentGrade);
+        monster = {...monster, ...currentGrade};
+        
+    solution.push(monster);
+    });
 
+    return solution;
+
+};
 
 
 //los numeros son %s
