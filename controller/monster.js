@@ -10,12 +10,13 @@ const createMonster = (stats) => {
 class Monster {
     isDead = false;
     kills = 0;
+    variation = 0.15; //variation applied to damage.
+    constructor(stats) {
         const keys = Object.keys(stats);
 
         keys.forEach((key, index) => {
             this[key] = stats[key];
         });
-      }
         this.curr_att_interval = stats.att_interval;
         this.currentHp = stats.hp;
     }
