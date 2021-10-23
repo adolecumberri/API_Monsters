@@ -122,7 +122,7 @@ let allMonsters = [
         "name": "false knight unarmored",
         "evolution": false,
         "type": "INSECT",
-        "grade": 1,
+        "grade": 0,
         "id": 18
     },
     {
@@ -241,7 +241,7 @@ let allMonsters = [
         "name": "anima",
         "evolution": false,
         "type": "SPECTRUM",
-        "grade": 1,
+        "grade": 0,
         "id": 35
     },
     {
@@ -262,7 +262,7 @@ let allMonsters = [
         "name": "ghost",
         "evolution": false,
         "type": "GHOST",
-        "grade": 1,
+        "grade": 0,
         "id": 38
     },
     {
@@ -332,7 +332,7 @@ let allMonsters = [
         "name": "spirit tadpole",
         "evolution": false,
         "type": "SPECTRUM",
-        "grade": 1,
+        "grade": 0,
         "id": 48
     },
     {
@@ -360,7 +360,7 @@ let allMonsters = [
         "name": "birdo",
         "evolution": false,
         "type": "CREATURE",
-        "grade": 1,
+        "grade": 0,
         "id": 52
     },
     {
