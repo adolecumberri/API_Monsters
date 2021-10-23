@@ -3,6 +3,9 @@
 let generalGrade = 0;
 let generalMonsterNumber = 10;
 let monsters = [];
+let monstersAfterFight = [];
+let variation = 0.15;
+
 let createInput = document.getElementById("create");
 let monstersDiv = document.getElementById("monsters");
 
@@ -36,10 +39,10 @@ function showMonsters() {
     );
 
     let newDiv = document.createElement('div');
-    newDiv.className = 'monster-div';
+    newDiv.setAttribute("class", 'monster-parent-div');
 
     solution.forEach(m => {
-        newDiv.innerHTML += `<span>${m.name}: ${m.number}</span><br/>`
+        newDiv.innerHTML += `<span class="'monster-div'" id="${m.name}">${m.name}: ${m.number}</span><br/>`
 
     });
     // monstersDiv.appendChild(null);
@@ -52,47 +55,31 @@ function createRandMonstersByGrade() {
     let solution = [];
     let gradeSelected = grades[`grade${generalGrade}`];
 
-
+    // debugger;
     for (let i = 0; i < generalMonsterNumber; i++) {
-        solution.push(createMonster(gradeSelected[rand(gradeSelected.length - 1)]));
+        let customStats = createStatsVariation(gradeSelected[Math.floor(rand(gradeSelected.length - 1))], variation);
+        solution.push(createMonster(customStats));
     }
 
     monsters = solution;
 
     showMonsters();
+    while (monsters.length) {
+        let mon1 = monsters.splice(monsters.length * Math.random() | 0, 1)[0];
+        let mon2 = monsters.splice(monsters.length * Math.random() | 0, 1)[0];
+
+        let result = pvp(mon1, mon2);
+        if (result === 0) {
+            //empate.
+            monsters.push(mon1, mon2);
+        } else {
+            monstersAfterFight.push(mon1, mon2);
+        }
+    }
 }
 
+rand = (max, min = 0) =>
+    Math.random() * (max - min) + min;
 
 
-const pvp = (
-    monst1,
-    monst2
-) => {
-    let i = 0;
-    for (; !monst1.isDead && !monst2.isDead; i++) {
-        if (monst1.curr_att_interval === i) {
-            //ataca monst1
-            monst2.defend(monst1);
-            monst2.end();
-        }
-        if (monst2.curr_att_interval === i) {
-            await monst1.defend(monst2);
-            monst1.end();
-        }
-    }
 
-    //Guardar en la base de datos
-    if (monst1.isDead && monst2.isDead) {
-        monst1.isDead = true;
-        monst1.kills++;
-
-        monst2.isDead = true;
-        monst2.kills++;
-    } else if (monst1.isDead) {
-        monst1.isDead = true;
-        monst2.kills++;
-    } else if (monst2.isDead) {
-        monst2.isDead = true;
-        monst1.kills++;
-    }
-};
