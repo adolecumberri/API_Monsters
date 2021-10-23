@@ -4,8 +4,6 @@ let createMonsterStats = () => {
     let monsterCommon = HERO_STATS;
     let solution = {};
 
-
-
     monsterCommon.forEach(
         (
             {
@@ -102,6 +100,9 @@ let asignValuesByGrade = (grades, monsters) => {
     return solution;
 
 };
+
+let rand = (max, min = 0) =>
+Math.round(Math.random() * (max - min) + min);
 
 
 //los numeros son %s

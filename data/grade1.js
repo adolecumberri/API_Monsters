@@ -1,163 +1,290 @@
-let grade1 = [
+let grade1 =[
     {
         "name": "angel",
         "evolution": false,
         "type": "ANGEL",
         "grade": 1,
-        "id": 1
+        "id": 1,
+        "accuracy": 0.85,
+        "att_interval": 9,
+        "crit": 0.18,
+        "critDmg": 1,
+        "def": 18.39,
+        "dmg": 12.4,
+        "evasion": 0.15,
+        "hp": 126,
+        "reg": 0.72
     },
     {
         "name": "demon",
         "evolution": false,
         "type": "ANGEL",
         "grade": 1,
-        "id": 4
+        "id": 4,
+        "accuracy": 0.85,
+        "att_interval": 8,
+        "crit": 0.3,
+        "critDmg": 1,
+        "def": 4,
+        "dmg": 9.6,
+        "evasion": 0.32,
+        "hp": 50,
+        "reg": 0.72
     },
     {
         "name": "spectro",
         "evolution": false,
         "type": "ANGEL",
         "grade": 1,
-        "id": 7
+        "id": 7,
+        "accuracy": 0.67,
+        "att_interval": 8,
+        "crit": 0.31,
+        "critDmg": 1,
+        "def": 8,
+        "dmg": 9.6,
+        "evasion": 0.24,
+        "hp": 114,
+        "reg": 1.06
     },
     {
         "name": "naga",
         "evolution": false,
         "type": "CREATURE",
         "grade": 1,
-        "id": 10
+        "id": 10,
+        "accuracy": 0.8,
+        "att_interval": 8,
+        "crit": 0.09,
+        "critDmg": 1,
+        "def": 4,
+        "dmg": 14,
+        "evasion": 0.11,
+        "hp": 168,
+        "reg": 0.96
     },
     {
         "name": "bird hunter jr",
         "evolution": false,
         "type": "HUNTER",
         "grade": 1,
-        "id": 13
+        "id": 13,
+        "accuracy": 0.28,
+        "att_interval": 20,
+        "crit": 0.48,
+        "critDmg": 2.59,
+        "def": 4,
+        "dmg": 17.2,
+        "evasion": 0.07,
+        "hp": 90,
+        "reg": 0.48
     },
     {
         "name": "elemental",
         "evolution": false,
         "type": "SPECTRUM",
         "grade": 1,
-        "id": 17
-    },
-    {
-        "name": "false knight unarmored",
-        "evolution": false,
-        "type": "INSECT",
-        "grade": 1,
-        "id": 18
+        "id": 17,
+        "accuracy": 0.85,
+        "att_interval": 9,
+        "crit": 0.18,
+        "critDmg": 1,
+        "def": 18.39,
+        "dmg": 12.4,
+        "evasion": 0.15,
+        "hp": 126,
+        "reg": 0.72
     },
     {
         "name": "mantis",
         "evolution": false,
         "type": "INSECT",
         "grade": 1,
-        "id": 21
+        "id": 21,
+        "accuracy": 0.85,
+        "att_interval": 8,
+        "crit": 0.3,
+        "critDmg": 1,
+        "def": 4,
+        "dmg": 9.6,
+        "evasion": 0.32,
+        "hp": 50,
+        "reg": 0.72
     },
     {
         "name": "spectrum controller",
         "evolution": false,
         "type": "HUNTER",
         "grade": 1,
-        "id": 23
+        "id": 23,
+        "accuracy": 0.85,
+        "att_interval": 8,
+        "crit": 0.12,
+        "critDmg": 1,
+        "def": 22.4,
+        "dmg": 11.6,
+        "evasion": 0.07,
+        "hp": 144,
+        "reg": 0.96
     },
     {
         "name": "first path",
         "evolution": false,
         "type": "SPECTRUM",
         "grade": 1,
-        "id": 28
+        "id": 28,
+        "accuracy": 0.8,
+        "att_interval": 5,
+        "crit": 0.24,
+        "critDmg": 1,
+        "def": 4.8,
+        "dmg": 9.2,
+        "evasion": 0.25,
+        "hp": 105,
+        "reg": 0.72
     },
     {
         "name": "second path",
         "evolution": false,
         "type": "SPECTRUM",
         "grade": 1,
-        "id": 29
+        "id": 29,
+        "accuracy": 0.28,
+        "att_interval": 20,
+        "crit": 0.48,
+        "critDmg": 2.59,
+        "def": 4,
+        "dmg": 17.2,
+        "evasion": 0.07,
+        "hp": 90,
+        "reg": 0.48
     },
     {
         "name": "third path",
         "evolution": false,
         "type": "SPECTRUM",
         "grade": 1,
-        "id": 30
+        "id": 30,
+        "accuracy": 0.85,
+        "att_interval": 8,
+        "crit": 0.3,
+        "critDmg": 1,
+        "def": 4,
+        "dmg": 9.6,
+        "evasion": 0.32,
+        "hp": 50,
+        "reg": 0.72
     },
     {
         "name": "Baldur",
         "evolution": false,
         "type": "INSECT",
         "grade": 1,
-        "id": 32
+        "id": 32,
+        "accuracy": 0.89,
+        "att_interval": 12,
+        "crit": 0,
+        "critDmg": 1,
+        "def": 30.4,
+        "dmg": 6.4,
+        "evasion": 0.03,
+        "hp": 134,
+        "reg": 0.96
     },
     {
         "name": "dung",
         "evolution": false,
         "type": "INSECT",
         "grade": 1,
-        "id": 33
-    },
-    {
-        "name": "anima",
-        "evolution": false,
-        "type": "SPECTRUM",
-        "grade": 1,
-        "id": 35
-    },
-    {
-        "name": "ghost",
-        "evolution": false,
-        "type": "GHOST",
-        "grade": 1,
-        "id": 38
+        "id": 33,
+        "accuracy": 0.89,
+        "att_interval": 12,
+        "crit": 0,
+        "critDmg": 1,
+        "def": 30.4,
+        "dmg": 6.4,
+        "evasion": 0.03,
+        "hp": 134,
+        "reg": 0.96
     },
     {
         "name": "dolor",
         "evolution": false,
         "type": "ANGEL",
         "grade": 1,
-        "id": 39
+        "id": 39,
+        "accuracy": 0.8,
+        "att_interval": 8,
+        "crit": 0.09,
+        "critDmg": 1,
+        "def": 4,
+        "dmg": 14,
+        "evasion": 0.11,
+        "hp": 168,
+        "reg": 0.96
     },
     {
         "name": "raptor",
         "evolution": false,
         "type": "CREATURE",
         "grade": 1,
-        "id": 40
+        "id": 40,
+        "accuracy": 0.85,
+        "att_interval": 9,
+        "crit": 0.18,
+        "critDmg": 1,
+        "def": 18.39,
+        "dmg": 12.4,
+        "evasion": 0.15,
+        "hp": 126,
+        "reg": 0.72
     },
     {
         "name": "plague bird",
         "evolution": false,
         "type": "CREATURE",
         "grade": 1,
-        "id": 42
-    },
-    {
-        "name": "spirit tadpole",
-        "evolution": false,
-        "type": "SPECTRUM",
-        "grade": 1,
-        "id": 48
-    },
-    {
-        "name": "birdo",
-        "evolution": false,
-        "type": "CREATURE",
-        "grade": 1,
-        "id": 52
+        "id": 42,
+        "accuracy": 0.8,
+        "att_interval": 5,
+        "crit": 0.24,
+        "critDmg": 1,
+        "def": 4.8,
+        "dmg": 9.2,
+        "evasion": 0.25,
+        "hp": 105,
+        "reg": 0.72
     },
     {
         "name": "secbal",
         "evolution": true,
         "type": "HUNTER",
         "grade": 1,
-        "id": 56
+        "id": 56,
+        "accuracy": 0.8,
+        "att_interval": 5,
+        "crit": 0.24,
+        "critDmg": 1,
+        "def": 4.8,
+        "dmg": 9.2,
+        "evasion": 0.25,
+        "hp": 105,
+        "reg": 0.72
     },
     {
         "name": "wild hunter",
         "evolution": false,
         "type": "HUNTER",
         "grade": 1,
-        "id": 57
+        "id": 57,
+        "accuracy": 0.8,
+        "att_interval": 9,
+        "crit": 0.12,
+        "critDmg": 1,
+        "def": 14.4,
+        "dmg": 10.4,
+        "evasion": 0.15,
+        "hp": 124,
+        "reg": 0.72
     }
 ]

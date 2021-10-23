@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="css/style.css" />
     <!-- compiling example:  https://www.typescriptlang.org/docs/handbook/typescript-tooling-in-5-minutes.html-->
+    <script src="data/grade0.js"></script>
     <script src="data/grade1.js"></script>
     <script src="data/grade2.js"></script>
     <script src="data/grade3.js"></script>
@@ -14,34 +16,66 @@
     <script src="data/statsBasics.js"></script>
     <script src="data/monstersAll.js"></script>
     <script src="data/asignacion.js"></script>
-  </head>
-  <body>
+    <script src="controller/monster.js"></script>
+</head>
+
+<body>
     <div id="container">
-      <div class="sub-container1"></div>
-      <div class="sub-container2"></div>
+        <div class="sub-container1">
+            <div class="options">
+                <input class="input-number" type="number" value="10" min="0" oninput="numberSelected(this)"/>
+                <label class="grade-label">
+                    grade 0:
+                    <input type="radio" name="grade" onchange="gradeSelected(this)" value="0" checked/>
+                </label>
+                <label class="grade-label">
+                    grade 1:
+                    <input type="radio" name="grade" onchange="gradeSelected(this)" value="1"/>
+                </label>
+                <label class="grade-label">
+                    grade 2:
+                    <input type="radio" name="grade" onchange="gradeSelected(this)" value="2"/>
+                </label>
+                <label class="grade-label">
+                    grade 3:
+                    <input type="radio" name="grade" onchange="gradeSelected(this)" value="3"/>
+                </label>
+                <label class="grade-label">
+                    grade 4:
+                    <input type="radio" name="grade" onchange="gradeSelected(this)" value="4"/>
+                </label>
+                <input id="create" class="create" value="create" type="button" disabled="true" onclick="createRandMonstersByGrade()">
+            </div>
+        </div>
+        <div class="sub-container2">
+            <div id="monsters"></div>
+        </div>
     </div>
-  </body>
-  
-  <script src="controller/utils.js"></script>
- <script src="data/finalData.js"></script>
- 
- 
- <script>
-      
-//   let basicsStats = createMonsterStats();
-//   let g1Stats = createGradeVersion(basicsStats, "grade1");
-//   let g2Stats = createGradeVersion(basicsStats, "grade2");
-//   let g3Stats = createGradeVersion(basicsStats, "grade3");
-//   let g4Stats = createGradeVersion(basicsStats, "grade4");
+</body>
 
-//   let grades = {
-//       grade1: g1Stats,
-//       grade2: g2Stats,
-//       grade3: g3Stats,
-//       grade4: g4Stats,
-//   }
-//   let b = asignValuesByGrade(grades, allMonsters);
+<script src="controller/utils.js"></script>
+<script src="data/finalData.js"></script>
+<script src="controller/visual.js"></script>
 
-//   console.log(b);
-  </script>
+
+<script>
+
+    updateCreateInput();
+    //   let basicsStats = createMonsterStats();
+    //   let g1Stats = createGradeVersion(basicsStats, "grade1");
+    //   let g2Stats = createGradeVersion(basicsStats, "grade2");
+    //   let g3Stats = createGradeVersion(basicsStats, "grade3");
+    //   let g4Stats = createGradeVersion(basicsStats, "grade4");
+    
+      let grades = {
+          grade0,
+          grade1,
+          grade2,
+          grade3,
+          grade4,
+      }
+    //   let b = asignValuesByGrade(grades, allMonsters);
+    
+    //   console.log(b);
+    </script>
 </html>
