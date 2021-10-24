@@ -18,7 +18,7 @@
 .sub-container2{
     border: 1px solid black;
     flex: 0 0 40%;
-    height: 90%;
+    /* height: 90%; */
 }
 
 .options{
@@ -43,4 +43,9 @@
 .create {
     width: 100%;
     margin: 0 80% 0 0;
+}
+
+.monster-div {
+    display: flex;
+    justify-content: space-between;
 }

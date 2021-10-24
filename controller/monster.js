@@ -127,13 +127,13 @@ const pvp = (
 
     for (let i = 0; !monst1.isDead && !monst2.isDead; i++) {
         if (monst1.curr_att_interval === i) {
-      debugger;     
+    //   debugger;     
             //ataca monst1
             monst2.defend(monst1);
             // monst2.end();
         }
         if (monst2.curr_att_interval === i) {
-            debugger;
+            // debugger;
             monst1.defend(monst2);
             // monst1.end();
         }
