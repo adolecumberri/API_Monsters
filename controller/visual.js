@@ -1,5 +1,3 @@
-
-
 let generalGrade = 0;
 let generalMonsterNumber = 10;
 let monsters = [];
@@ -29,18 +27,16 @@ function updateCreateInput() {
 function showMonsters() {
     let types = grades[`grade${generalGrade}`].map(m => m.name);
     let solution = [];
-   
+
 
     let score = loadStats();
     console.log(score);
 
     types.forEach(type =>
-        solution.push(
-            {
-                name: type,
-                number: monstersAfterFight.filter(m => m.name === type).length
-            }
-        )
+        solution.push({
+            name: type,
+            number: monstersAfterFight.filter(m => m.name === type).length
+        })
     );
 
 
@@ -48,15 +44,17 @@ function showMonsters() {
     newDiv.setAttribute("class", 'monster-parent-div');
 
     solution.forEach(m => {
-        newDiv.innerHTML += `
+
+                let porcentaje = (score[m.name].wins / score[m.name].total) * 100;
+
+
+                newDiv.innerHTML += `
         <div class="monster-div" id="${m.name}">
-            ${m.name}: ${m.number} ${score[m.name] && `<span> ${
-                score[m.name].wins
-            }/${
-                score[m.name].total
-            } - ${
-              Math.floor(  (score[m.name].wins/score[m.name].total) * 10000 ) / 100
-            }% </span>`}
+            ${m.name}: ${m.number} ${score[m.name] && `<span> ${score[m.name].wins
+            }/${score[m.name].total
+            } - <span class="${"color " + percentagecolor(porcentaje)
+            }">${!isNaN(porcentaje) ? Math.floor(porcentaje * 100) / 100 + "%" : 'NS/NC'
+            } <span></span>`}
         </div>
         <br/>
         `
@@ -70,10 +68,11 @@ function showMonsters() {
 
 //cargo stats de winrates.
 function loadStats() {
+    let types = grades[`grade${generalGrade}`].map(m => m.name);
     let solution = {};
 
-    monstersAfterFight.forEach(m => {
-        solution[m.name] = { total: 0, wins: 0 }
+    types.forEach(m => {
+        solution[m] = { total: 0, wins: 0 }
     });
 
     monstersAfterFight.forEach(m => {
@@ -91,31 +90,70 @@ function createRandMonstersByGrade() {
 
     // debugger;
     for (let i = 0; i < generalMonsterNumber; i++) {
-        let customStats = createStatsVariation(gradeSelected[Math.floor(rand(gradeSelected.length ))], variation);
+        let customStats = createStatsVariation(gradeSelected[Math.floor(rand(gradeSelected.length))], variation);
         solution.push(createMonster(customStats));
     }
 
     monsters = solution;
 
-    
-    while (monsters.length) {
-        let mon1 = monsters.splice(monsters.length * Math.random() | 0, 1)[0];
-        let mon2 = monsters.splice(monsters.length * Math.random() | 0, 1)[0];
+    let executePvp = () => {
+        while (monsters.length) {
+            let mon1 = monsters.splice(monsters.length * Math.random() | 0, 1)[0];
+            let mon2 = monsters.splice(monsters.length * Math.random() | 0, 1)[0];
 
-        let result = pvp(mon1, mon2);
-        if (result === 0) {
-            //empate.
-            monsters.push(mon1, mon2);
-        } else {
-            monstersAfterFight.push(mon1, mon2);
+            if(!mon1 || !mon2){
+                debugger;
+            }
+
+            let result = pvp(mon1, mon2);
+            if (result === 0) {
+                //empate.
+                monsters.push(mon1, mon2);
+            } else {
+                monstersAfterFight.push(mon1, mon2);
+            }
         }
     }
-    
+
+    executePvp();
+
+    let flag = false;
+    while (!flag) {
+        let vivosSinMatar = monstersAfterFight.filter(m => !m.isDead && m.kills === 0);
+        if (vivosSinMatar.length) {
+            monsters.push(...vivosSinMatar);
+        } else {
+            flag = true;
+        }
+        executePvp();
+    }
+
+
+
+
     showMonsters();
 }
 
 rand = (max, min = 0) =>
     Math.random() * (max - min) + min;
 
+percentagecolor = (percentage) => {
+    let solution = "";
 
+    let decena = Math.floor(percentage);
 
+    if (decena >= 43 && decena <= 57) {
+        solution = "perfect";
+    } else if (decena <= 43 && decena >= 25) {
+        solution = "bad";
+    } else if (decena <= 25) {
+        solution = "very-bad";
+    } else if (decena >= 57 && decena <= 75) {
+        solution = "bad";
+    } else if (decena >= 75) {
+        solution = "very-bad";
+    }
+
+    return solution;
+
+}
