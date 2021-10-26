@@ -14,16 +14,17 @@
     <script src="data/grade3.js"></script>
     <script src="data/grade4.js"></script>
     <script src="data/statsBasics.js"></script>
-    <script src="data/monstersAll.js"></script>
+    <!-- <script src="data/monstersAll.js"></script> -->
     <script src="data/asignacion.js"></script>
     <script src="controller/monster.js"></script>
+    <script src="data/gradeVariation.js"></script>
 </head>
 
 <body>
     <div id="container">
         <div class="sub-container1">
             <div class="options">
-                <input class="input-number" type="number" value="10" min="0" oninput="numberSelected(this)"/>
+                <input class="input-number" type="number" value="10" min="0" oninput="numberSelected(this)" />
                 <label class="grade-label">
                     grade 0:
                     <input type="radio" name="grade" onchange="gradeSelected(this)" value="0" checked/>
@@ -59,23 +60,23 @@
 
 
 <script>
-
     updateCreateInput();
     //   let basicsStats = createMonsterStats();
     //   let g1Stats = createGradeVersion(basicsStats, "grade1");
     //   let g2Stats = createGradeVersion(basicsStats, "grade2");
     //   let g3Stats = createGradeVersion(basicsStats, "grade3");
     //   let g4Stats = createGradeVersion(basicsStats, "grade4");
-    
-      let grades = {
-          grade0,
-          grade1,
-          grade2,
-          grade3,
-          grade4,
-      }
-    //   let b = asignValuesByGrade(grades, allMonsters);
-    
+
+    let grades = {
+            grade0,
+            grade1,
+            grade2,
+            grade3,
+            grade4,
+        }
+        //   let b = asignValuesByGrade(grades, allMonsters);
+
     //   console.log(b);
-    </script>
+</script>
+
 </html>

@@ -68,8 +68,8 @@ class Monster {
         this.currentHp = currentHp - finalDamage >= 0 ? currentHp - finalDamage : 0; //
 
         if (currentHp === 0) {
-            this.heroDies();
-            enemi.heroKills();
+            this.dies();
+            enemi.addKill();
         }
     };
 
@@ -79,19 +79,26 @@ class Monster {
         this.currentHp = currentHp - damage >= 0 ? currentHp - damage : 0;
 
         if (currentHp === 0) {
-            this.heroDies();
+            this.dies();
         }
     };
 
     //HERO DIES
-    heroDies = () => {
+    dies = () => {
         this.isDead = true;
     };
 
     //HERO WINS
-    heroKills = () => {
+    addKill = () => {
         this.kills = this.kills + 1;
     };
+
+    revive = () => {
+        this.isDead = false;
+        this.kills = 0;
+        this.curr_att_interval = this.att_interval;
+        this.currentHp = this.hp;
+    }
 
     //calculo siguiente turno. Habilidades de velocidad lo sobreescribiran.
     calcNextTurn = (att_intervalEf = 0) => {
@@ -144,23 +151,18 @@ const pvp = (
 
         // monst2.isDead = true;
         // monst2.kills++;
-        monst1.currentHp = monst1.hp;
-        monst1.curr_att_interval = monst1.att_interval;
-        monst1.isDead = false;
-        monst1.kills = 0;
-
-        monst2.currentHp = monst2.hp;
-        monst2.curr_att_interval = monst2.att_interval;
-        monst2.isDead = false;
-        monst2.kills = 0;
+        monst1.revive();
+        monst2.revive();
         solution = 0;
     } else if (monst1.isDead) {
-        monst1.isDead = true;
-        monst2.kills++;
+        monst1.dies();
+        monst2.addKill();
         solution = 1;
     } else if (monst2.isDead) {
-        monst2.isDead = true;
-        monst1.kills++;
+        monst2.dies();
+        monst1.addKill();
         solution = 2;
     }
+
+    return solution;
 };

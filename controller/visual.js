@@ -24,6 +24,7 @@ function updateCreateInput() {
     createInput.disabled = !(generalGrade >= 0 && generalMonsterNumber > 0)
 }
 
+//pinta info en el div de los monstruos
 function showMonsters() {
     let types = grades[`grade${generalGrade}`].map(m => m.name);
     let solution = [];
@@ -83,6 +84,9 @@ function loadStats() {
     return solution;
 }
 
+//crea monstruos segun el grado.
+// crea las peleas 
+// y revisa que nadie se quede sin combatir
 function createRandMonstersByGrade() {
     monstersAfterFight = []; //reinicio var global
     let solution = [];
@@ -96,64 +100,40 @@ function createRandMonstersByGrade() {
 
     monsters = solution;
 
-    let executePvp = () => {
+    // let executePvp = () => {
+
         while (monsters.length) {
             let mon1 = monsters.splice(monsters.length * Math.random() | 0, 1)[0];
             let mon2 = monsters.splice(monsters.length * Math.random() | 0, 1)[0];
 
+            //TODO: eliminar. useless.
             if(!mon1 || !mon2){
                 debugger;
             }
 
             let result = pvp(mon1, mon2);
             if (result === 0) {
-                //empate.
+                //empate. los devuelvo a la cola
                 monsters.push(mon1, mon2);
             } else {
                 monstersAfterFight.push(mon1, mon2);
             }
         }
-    }
 
-    executePvp();
+    // }
 
-    let flag = false;
-    while (!flag) {
-        let vivosSinMatar = monstersAfterFight.filter(m => !m.isDead && m.kills === 0);
-        if (vivosSinMatar.length) {
-            monsters.push(...vivosSinMatar);
-        } else {
-            flag = true;
-        }
-        executePvp();
-    }
+    // executePvp();
 
-
-
+    // let flag = false;
+    // while (!flag) {
+    //     let vivosSinMatar = monstersAfterFight.filter(m => !m.isDead && m.kills === 0);
+    //     if (vivosSinMatar.length) {
+    //         monsters.push(...vivosSinMatar);
+    //     } else {
+    //         flag = true;
+    //     }
+    //     executePvp();
+    // }
 
     showMonsters();
-}
-
-rand = (max, min = 0) =>
-    Math.random() * (max - min) + min;
-
-percentagecolor = (percentage) => {
-    let solution = "";
-
-    let decena = Math.floor(percentage);
-
-    if (decena >= 43 && decena <= 57) {
-        solution = "perfect";
-    } else if (decena <= 43 && decena >= 25) {
-        solution = "bad";
-    } else if (decena <= 25) {
-        solution = "very-bad";
-    } else if (decena >= 57 && decena <= 75) {
-        solution = "bad";
-    } else if (decena >= 75) {
-        solution = "very-bad";
-    }
-
-    return solution;
-
 }
