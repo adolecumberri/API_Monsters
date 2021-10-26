@@ -1,5 +1,5 @@
 let generalGrade = 0
-let generalMonsterNumber = 10
+let generalMonsterNumber = 100000
 let monsters = []
 let monstersAfterFight = []
 const variation = 0.15
@@ -7,45 +7,45 @@ const variation = 0.15
 const createInput = document.getElementById('create')
 const monstersDiv = document.getElementById('monsters')
 
-function gradeSelected ({ value }) {
-  generalGrade = value
-  updateCreateInput()
+function gradeSelected({ value }) {
+    generalGrade = value
+    updateCreateInput()
 }
 
-function numberSelected ({ value }) {
-  generalMonsterNumber = value
-  updateCreateInput()
+function numberSelected({ value }) {
+    generalMonsterNumber = value
+    updateCreateInput()
 }
 
-function updateCreateInput () {
-  // debugger;
-  createInput.disabled = !(generalGrade >= 0 && generalMonsterNumber > 0)
+function updateCreateInput() {
+    // debugger;
+    createInput.disabled = !(generalGrade >= 0 && generalMonsterNumber > 0)
 }
 
 // pinta info en el div de los monstruos
-function showMonsters () {
-  const types = grades[`grade${generalGrade}`].map(m => m.name)
-  const solution = []
+function showMonsters() {
+    const types = grades[`grade${generalGrade}`].map(m => m.name)
+    const solution = []
 
-  const score = loadStats()
-  console.log(score)
+    const score = loadStats()
+    console.log(score)
 
-  types.forEach(type =>
-    solution.push({
-      name: type,
-      number: monstersAfterFight.filter(m => m.name === type).length
-    })
-  )
+    types.forEach(type =>
+        solution.push({
+            name: type,
+            number: monstersAfterFight.filter(m => m.name === type).length
+        })
+    )
 
-  const newDiv = document.createElement('div')
-  newDiv.setAttribute('class', 'monster-parent-div')
+    const newDiv = document.createElement('div')
+    newDiv.setAttribute('class', 'monster-parent-div')
 
-  solution.forEach(m => {
-    const porcentaje = (score[m.name].wins / score[m.name].total) * 100
+    solution.forEach(m => {
+                const porcentaje = (score[m.name].wins / score[m.name].total) * 100
 
-    newDiv.innerHTML += `
+                newDiv.innerHTML += `
         <div class="monster-div" id="${m.name}">
-            ${m.name}: ${m.number} ${score[m.name] && `<span> ${score[m.name].wins
+            ${m.name}: ${score[m.name] && `<span> ${score[m.name].wins
             }/${score[m.name].total
             } - <span class="${'color ' + percentagecolor(porcentaje)
             }">${!isNaN(porcentaje) ? Math.floor(porcentaje * 100) / 100 + '%' : 'NS/NC'
@@ -83,10 +83,18 @@ function loadStats () {
 function createRandMonstersByGrade () {
   monstersAfterFight = [] // reinicio var global
   const solution = []
+  //Explicación por si miguel lee esto:
+  // selecciono un grado de una variable que creo en el fondo de index.html.
   const gradeSelected = grades[`grade${generalGrade}`]
 
   // debugger;
   for (let i = 0; i < generalMonsterNumber; i++) {
+      //de atras a alante: cojo un numero random desde 0 a la longitud del grado seleccionado. 
+      //ej: grado 0: 0->5, grado 1: 0 -> 18.
+      // entonces, del gradoSelected, que es una lista, cojo el monstruo que corresponda.
+      // y genero unas estadisticas variadas de ese monstuo seleccionado.
+      // despues creo un monstruo con esas estadisticas variadas en la lista llamada "solucion".
+      // despues solución se inserta en "monstruos" que son los que van a pelear entre ellos.
     const customStats = createStatsVariation(gradeSelected[Math.floor(rand(gradeSelected.length))], variation)
     solution.push(createMonster(customStats))
   }

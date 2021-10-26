@@ -8,7 +8,8 @@ class Monster {
     isDead = false;
     kills = 0;
     variation = 0.15; //variation applied to damage.
-    constructor(stats) {
+    id = null;
+    constructor(stats, id) {
         const keys = Object.keys(stats);
 
         keys.forEach((key, index) => {
@@ -16,6 +17,7 @@ class Monster {
         });
         this.curr_att_interval = stats.att_interval;
         this.currentHp = stats.hp;
+        this.id = uniqueID();
     }
 
     start = () => {};
