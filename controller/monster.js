@@ -112,14 +112,11 @@ class Monster {
             new_att_interval > parseInt(curr_att_interval) ? new_att_interval : parseInt(curr_att_interval) + 1;
     };
 
-
     rand = (max, min = 0) =>
         Math.round(Math.random() * (max - min) + min);
 
     //function to load probabilities.
     getProb = () => Math.random();
-
-
 }
 
 //solution = 0 === draw
