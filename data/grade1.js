@@ -1,4 +1,6 @@
-const grade1 = [{
+const grade1 = [
+    
+    {
         name: 'angel',
         evolution: false,
         type: 'ANGEL',

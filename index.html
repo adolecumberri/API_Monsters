@@ -69,11 +69,11 @@
 
     //variables que vienen de los ficheros.
     let grades = {
-            grade0,
-            grade1,
-            grade2,
-            grade3,
-            grade4,
+            grade0: finalData.filter( d => d.grade === 0),
+            grade1: finalData.filter( d => d.grade === 1),
+            grade2: finalData.filter( d => d.grade === 2),
+            grade3: finalData.filter( d => d.grade === 3),
+            grade4: finalData.filter( d => d.grade === 4)
         }
         //   let b = asignValuesByGrade(grades, allMonsters);
 

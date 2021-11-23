@@ -87,6 +87,8 @@ function createRandMonstersByGrade () {
   // selecciono un grado de una variable que creo en el fondo de index.html.
   const gradeSelected = grades[`grade${generalGrade}`]
 
+  // grade
+
   // debugger;
   for (let i = 0; i < generalMonsterNumber; i++) {
       //de atras a alante: cojo un numero random desde 0 a la longitud del grado seleccionado. 
