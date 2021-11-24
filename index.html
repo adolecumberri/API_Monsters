@@ -24,7 +24,7 @@
     <div id="container">
         <div class="sub-container1">
             <div class="options">
-                <input class="input-number" type="number" value="100000" min="0" oninput="numberSelected(this)" />
+                <input class="input-number" type="number" value="10000" min="0" oninput="numberSelected(this)" />
                 <label class="grade-label">
                     grade 0:
                     <input type="radio" name="grade" onchange="gradeSelected(this)" value="0" checked/>
@@ -45,7 +45,7 @@
                     grade 4:
                     <input type="radio" name="grade" onchange="gradeSelected(this)" value="4"/>
                 </label>
-                <input id="create" class="create" value="create" type="button" disabled="true" onclick="createRandMonstersByGrade()">
+                <input id="create" class="create" value="create" type="button" disabled="true" onclick="monsterAutomatization()">
             </div>
         </div>
         <div class="sub-container2">
