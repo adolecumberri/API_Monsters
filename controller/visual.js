@@ -147,8 +147,8 @@ function createRandMonstersByGrade() {
 function showAllMonsters() {
 
   let gradeKey = Object.keys(grades);
-  const solution = [];
-  const score = {
+  let solution = [];
+  let score = {
     grade0: [],
     grade1: [],
     grade2: [],
@@ -165,7 +165,7 @@ function showAllMonsters() {
         newScore[m] = { total: 0, wins: 0 }
       })
     
-      monstersAfterFight.forEach(m => {
+      monstersAfterFight[currentGrade].forEach(m => {
         newScore[m.name].total++
         newScore[m.name].wins = m.kills > 0 ? newScore[m.name].wins + 1 : newScore[m.name].wins
       })
@@ -187,22 +187,25 @@ function showAllMonsters() {
     newDiv.setAttribute('class', 'monster-parent-div')
 
     solution.forEach(m => {
-      const porcentaje = (score[m.name].wins / score[m.name].total) * 100
+      const porcentaje = ( score[currentGrade][m.name].wins /  score[currentGrade][m.name].total) * 100
 
       newDiv.innerHTML += `
-    <div class="monster-div" id="${m.name}">
-        ${m.name}: ${score[m.name] && `<span> ${score[m.name].wins
-        }/${score[m.name].total
-        } - <span class="${'color ' + percentagecolor(porcentaje)
-        }">${!isNaN(porcentaje) ? Math.floor(porcentaje * 100) / 100 + '%' : 'NS/NC'
-        } <span></span>`}
-    </div>
-    <br/>
-    `
+      <div class="monster-div" id="${m.name}">
+          ${m.name}: ${ score[currentGrade][m.name] && `<span> ${ score[currentGrade][m.name].wins
+          }/${score[currentGrade][m.name].total
+          } - <span class="${'color ' + percentagecolor(porcentaje)
+          }">${!isNaN(porcentaje) ? Math.floor(porcentaje * 100) / 100 + '%' : 'NS/NC'
+          } <span></span>`}
+      </div>
+      <br/>
+      `
     })
 
     // monstersDiv.innerHTML = ''
-    monstersDiv.appendChild(newDiv)
+    monstersDiv.appendChild(newDiv);
+
+    //reseting solutions.
+    solution = []
   })
 
 }
