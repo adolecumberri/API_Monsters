@@ -3,6 +3,14 @@ let generalMonsterNumber = 100000
 let monsters = []
 let monstersAfterFight = []
 const variation = 0.15
+let score = {
+  grade0: [],
+  grade1: [],
+  grade2: [],
+  grade3: [],
+  grade4: [],
+};
+
 
 const createInput = document.getElementById('create')
 const monstersDiv = document.getElementById('monsters')
@@ -141,74 +149,6 @@ function createRandMonstersByGrade() {
 }
 
 
-
-
-
-function showAllMonsters() {
-
-  let gradeKey = Object.keys(grades);
-  let solution = [];
-  let score = {
-    grade0: [],
-    grade1: [],
-    grade2: [],
-    grade3: [],
-    grade4: [],
-  };
-  gradeKey.forEach(currentGrade => {
-    const types = grades[currentGrade].map(m => m.name);
-
-
-      const newScore = {}
-
-      types.forEach(m => {
-        newScore[m] = { total: 0, wins: 0 }
-      })
-    
-      monstersAfterFight[currentGrade].forEach(m => {
-        newScore[m.name].total++
-        newScore[m.name].wins = m.kills > 0 ? newScore[m.name].wins + 1 : newScore[m.name].wins
-      })
-    
-      score[currentGrade] = newScore;
-
-
-
-    types.forEach(type =>
-      solution.push({
-        name: type,
-        number: monstersAfterFight[currentGrade].filter(m => m.name === type).length
-      })
-    );
-
-    debugger;
-
-    const newDiv = document.createElement('div')
-    newDiv.setAttribute('class', 'monster-parent-div')
-
-    solution.forEach(m => {
-      const porcentaje = ( score[currentGrade][m.name].wins /  score[currentGrade][m.name].total) * 100
-
-      newDiv.innerHTML += `
-      <div class="monster-div" id="${m.name}">
-          ${m.name}: ${ score[currentGrade][m.name] && `<span> ${ score[currentGrade][m.name].wins
-          }/${score[currentGrade][m.name].total
-          } - <span class="${'color ' + percentagecolor(porcentaje)
-          }">${!isNaN(porcentaje) ? Math.floor(porcentaje * 100) / 100 + '%' : 'NS/NC'
-          } <span></span>`}
-      </div>
-      <br/>
-      `
-    })
-
-    // monstersDiv.innerHTML = ''
-    monstersDiv.appendChild(newDiv);
-
-    //reseting solutions.
-    solution = []
-  })
-
-}
 
 
 

@@ -11,7 +11,7 @@
 .sub-container1 {
     border: 1px solid black;
     flex: 0 0 40%;
-    height: 100%;
+    /* height: 100%; */
 }
 
 .sub-container2 {
@@ -47,6 +47,12 @@
 .monster-div {
     display: flex;
     justify-content: space-between;
+    margin: 4px 0px;
+}
+
+.monster-parent-div {
+    display: flex;
+    flex-direction: column;
 }
 
 .color {
