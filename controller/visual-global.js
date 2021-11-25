@@ -14,7 +14,7 @@ function showAllMonsters() {
   
       // adding map and data
       monstersAfterFight[currentGrade].forEach(m => {
-        if (newScore[m.name] === undefined) newScore[m.name] = { total: 0, wins: 0 }
+        if (newScore[m.name] === undefined) newScore[m.name] = { total: 0, wins: 0 };
   
         newScore[m.name].total++
         newScore[m.name].wins = m.kills > 0 ? newScore[m.name].wins + 1 : newScore[m.name].wins
@@ -48,7 +48,7 @@ function showAllMonsters() {
   }
   
   let drawGrid = (m, score, currentGrade) => {
-      if(score[currentGrade][m.name]) debugger;
+      if(!score[currentGrade][m.name]) score[currentGrade][m.name] = { total: 0, wins: 0 };
     const porcentaje = (score[currentGrade][m.name].wins / score[currentGrade][m.name].total) * 100;
   
     score[currentGrade][m.name]['percentage'] = porcentaje;
