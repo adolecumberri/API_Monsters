@@ -186,3 +186,10 @@ downloadJSON = (filename, data) => {
   
     document.body.removeChild(element);
   }
+
+  hashtableToArray = ( )=> {
+      
+  }
+
+
+  

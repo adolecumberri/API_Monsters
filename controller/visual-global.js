@@ -5,6 +5,8 @@ const finalScore = {
 
 }
 
+let iterations = 0;
+
 function showAllMonsters() {
     monstersDiv.innerHTML = ''
     let gradeKey = Object.keys(grades);
@@ -52,8 +54,10 @@ function showAllMonsters() {
   
       //reseting solutions.
       solution = []
-    })
+    });
   
+    downloadJSON(`finalData${iterations}.json`, [...grades["grade0"], ...grades["grade1"], ...grades["grade2"], ...grades["grade3"], ...grades["grade4"]]);
+
   }
   
   let drawGrid = (m, score, currentGrade) => {
