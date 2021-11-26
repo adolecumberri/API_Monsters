@@ -1,4 +1,10 @@
 
+// estas funciones son para mostrar estadisticas de todos los monstruos, no solo de los grados.
+
+const finalScore = {
+
+}
+
 function showAllMonsters() {
     monstersDiv.innerHTML = ''
     let gradeKey = Object.keys(grades);
@@ -6,7 +12,9 @@ function showAllMonsters() {
   
     gradeKey.forEach(currentGrade => {
       let currentMonsterList = grades[currentGrade];
-      const monsterNames = currentMonsterList.map(m => m.name);
+      const monsterNames = currentMonsterList.map(m => {
+        return {name: m.name, id: m.id}
+      });
   
       //loading statistics
       const newScore = {};
@@ -24,10 +32,11 @@ function showAllMonsters() {
       score[currentGrade] = newScore;
   
       //
-      monsterNames.forEach(monsterName =>
+      monsterNames.forEach(monsterNameAndId =>
         solution.push({
-          name: monsterName,
-          number: monstersAfterFight[currentGrade].filter(m => m.name === monsterName).length
+          name: monsterNameAndId.name,
+          id: monsterNameAndId.id,
+          number: monstersAfterFight[currentGrade].filter(m => m.name === monsterNameAndId.name).length
         })
       );
   
@@ -51,8 +60,9 @@ function showAllMonsters() {
       if(!score[currentGrade][m.name]) score[currentGrade][m.name] = { total: 0, wins: 0 };
     const porcentaje = (score[currentGrade][m.name].wins / score[currentGrade][m.name].total) * 100;
   
-    score[currentGrade][m.name]['percentage'] = porcentaje;
-    score[currentGrade][m.name]['type'] = percentagecolor(porcentaje);
+    updateFinalScore (porcentaje, currentGrade, m.name, m.id);
+    // score[currentGrade][m.name]['percentage'] = porcentaje;
+    // score[currentGrade][m.name]['type'] = percentagecolor(porcentaje);
   
     return `
         <div class="monster-div" id="${m.name}">
@@ -65,3 +75,13 @@ function showAllMonsters() {
         `
   }
   
+
+  let updateFinalScore = (porcentaje, currentGrade, name, id) => {
+    if(!finalScore[currentGrade]) finalScore[currentGrade] = {};
+    if(!finalScore[currentGrade][name]) finalScore[currentGrade][name] = {};
+
+    finalScore[currentGrade][name]['percentage'] = porcentaje;
+    finalScore[currentGrade][name]['type'] = percentagecolor(porcentaje);
+    finalScore[currentGrade][name]['id'] = id;
+
+  }
