@@ -81,7 +81,7 @@ function showAllMonsters() {
     if(!finalScore[currentGrade][name]) finalScore[currentGrade][name] = {};
 
     finalScore[currentGrade][name]['percentage'] = porcentaje;
-    finalScore[currentGrade][name]['type'] = percentagecolor(porcentaje);
+    finalScore[currentGrade][name]['type'] = percentagePerfection(porcentaje);
     finalScore[currentGrade][name]['id'] = id;
 
   }

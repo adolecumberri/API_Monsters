@@ -148,6 +148,27 @@ percentagecolor = (percentage) => {
     return solution
 }
 
+
+percentagePerfection = (percentage) => {
+    let solution = '';
+
+    const decena = Math.floor(percentage);
+
+    if (decena >= 43 && decena <= 57) {
+        solution = 'perfect';
+    } else if (decena <= 43 && decena >= 25) {
+        solution = 'low';
+    } else if (decena <= 25) {
+        solution = 'very-low';
+    } else if (decena >= 57 && decena <= 75) {
+        solution = 'high';
+    } else if (decena >= 75) {
+        solution = 'very-high';    }
+
+    return solution
+}
+
+
 uniqueID = () => {
     return Math.floor(Math.random() * Math.floor(Math.random() * Date.now()))
 }
