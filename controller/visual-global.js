@@ -5,8 +5,6 @@ const finalScore = {
 
 }
 
-let iterations = 0;
-
 function showAllMonsters() {
     monstersDiv.innerHTML = ''
     let gradeKey = Object.keys(grades);
@@ -55,8 +53,7 @@ function showAllMonsters() {
       //reseting solutions.
       solution = []
     });
-  
-    downloadJSON(`finalData${iterations}.json`, [...grades["grade0"], ...grades["grade1"], ...grades["grade2"], ...grades["grade3"], ...grades["grade4"]]);
+
 
   }
   
@@ -84,8 +81,8 @@ function showAllMonsters() {
     if(!finalScore[currentGrade]) finalScore[currentGrade] = {};
     if(!finalScore[currentGrade][name]) finalScore[currentGrade][name] = {};
 
-    finalScore[currentGrade][name]['percentage'] = porcentaje;
-    finalScore[currentGrade][name]['type'] = percentagePerfection(porcentaje);
+    finalScore[currentGrade][name]['percentage'] = Math.floor(porcentaje * 100) / 100;
+    finalScore[currentGrade][name]['grade'] = percentagePerfection(porcentaje);
     finalScore[currentGrade][name]['id'] = id;
 
   }

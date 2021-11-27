@@ -12,6 +12,9 @@ let score = {
 };
 
 
+let iterations = 0;
+
+
 const createInput = document.getElementById('create')
 const monstersDiv = document.getElementById('monsters')
 
@@ -215,22 +218,14 @@ function monsterAutomatization() {
       }
     }
   })
+// let filtered = finalScore
+do {
+  showAllMonsters();
 
+  downloadJSON(`finalData${iterations}.json`, [...grades["grade0"], ...grades["grade1"], ...grades["grade2"], ...grades["grade3"], ...grades["grade4"]]);
+let finalScoreArray = hashtableToArray(finalScore);
+  downloadJSON(`winrates${iterations}.json`, finalScoreArray );
+}while(false)
 
-  // }
-
-  // executePvp();
-
-  // let flag = false;
-  // while (!flag) {
-  //     let vivosSinMatar = monstersAfterFight.filter(m => !m.isDead && m.kills === 0);
-  //     if (vivosSinMatar.length) {
-  //         monsters.push(...vivosSinMatar);
-  //     } else {
-  //         flag = true;
-  //     }
-  //     executePvp();
-  // }
-
-  showAllMonsters()
+  
 }

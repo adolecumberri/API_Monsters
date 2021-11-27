@@ -63,17 +63,17 @@ const createGradeVersion = (data, grade) => {
         const newAccuracy = Math.floor((d.accuracy + d.accuracy * (v.accuracy / 1000)) * 1000) / 1000
 
         solution[className] = {
-                accuracy: newAccuracy > 1 ? 1 : newAccuracy,
-                att_interval: Math.floor(d.att_interval + d.att_interval * (v.att_interval / 1000)),
-                crit: Math.floor((d.crit + d.crit * (v.crit / 1000)) * 1000) / 1000,
-                critDmg: newCritDmg < 1 ? 1 : newCritDmg,
-                def: Math.floor((d.def + d.def * (v.def / 1000)) * 1000) / 1000,
-                dmg: Math.floor((d.dmg + d.dmg * (v.dmg / 1000)) * 1000) / 1000,
-                evasion: Math.floor((d.evasion + d.evasion * (v.evasion / 1000)) * 1000) / 1000,
-                hp: Math.floor(d.hp + d.hp * (v.hp / 1000)),
-                reg: Math.floor((d.reg + d.reg * (v.reg / 1000)) * 1000) / 1000
-            }
-            // console.log({d}, {v});
+            accuracy: newAccuracy > 1 ? 1 : newAccuracy,
+            att_interval: Math.floor(d.att_interval + d.att_interval * (v.att_interval / 1000)),
+            crit: Math.floor((d.crit + d.crit * (v.crit / 1000)) * 1000) / 1000,
+            critDmg: newCritDmg < 1 ? 1 : newCritDmg,
+            def: Math.floor((d.def + d.def * (v.def / 1000)) * 1000) / 1000,
+            dmg: Math.floor((d.dmg + d.dmg * (v.dmg / 1000)) * 1000) / 1000,
+            evasion: Math.floor((d.evasion + d.evasion * (v.evasion / 1000)) * 1000) / 1000,
+            hp: Math.floor(d.hp + d.hp * (v.hp / 1000)),
+            reg: Math.floor((d.reg + d.reg * (v.reg / 1000)) * 1000) / 1000
+        }
+        // console.log({d}, {v});
     }
 
     return solution
@@ -116,8 +116,8 @@ const asignValuesByGrade = (grades, monsters) => {
     monsters.forEach((monster) => {
         const heroType = asignacion[monster.name]
         const currentGrade = grades[`grade${monster.grade}`][heroType]
-            // console.log(currentGrade);
-        monster = {...monster, ...currentGrade }
+        // console.log(currentGrade);
+        monster = { ...monster, ...currentGrade }
 
         solution.push(monster)
     })
@@ -163,7 +163,8 @@ percentagePerfection = (percentage) => {
     } else if (decena >= 57 && decena <= 75) {
         solution = 'high';
     } else if (decena >= 75) {
-        solution = 'very-high';    }
+        solution = 'very-high';
+    }
 
     return solution
 }
@@ -176,20 +177,52 @@ uniqueID = () => {
 
 downloadJSON = (filename, data) => {
     var element = document.createElement('a');
-    element.setAttribute('href', 'data:text/plain;charset=utf-8,' +encodeURIComponent(JSON.stringify(data)));
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(JSON.stringify(data)));
     element.setAttribute('download', filename);
-  
+
     element.style.display = 'none';
     document.body.appendChild(element);
-  
+
     element.click();
-  
+
     document.body.removeChild(element);
-  }
+}
 
-  hashtableToArray = ( )=> {
-      
-  }
+//Hashmap in hashmap to array.
+hashtableToArray = (nestedObject) => {
+    let solution = [];
+
+    for (object in nestedObject) {
+        for (data in nestedObject[object]) {
+            solution.push(nestedObject[object][data]);
+        }
+    }
+
+    return solution;
+}
+
+updateGrades = ( finalScore)  => {
+    let gradesKeys = Obhect.keys(finalScore);
+
+    gradesKeys.keys( grade => {
+        //grado 0, grado 1, grado 2.... de final score.
+        let data = finalScore[grade];
 
 
-  
+        for (monsterName in data) {
+
+            let thisMonster = data[monsterName];
+            if(thisMonster.grade === "very-low"){
+
+            }else if(thisMonster.grade === "low"){
+            
+            }else if (thisMonster.grade === "high"){
+
+            }else if (thisMonster.grade === "very-high"){
+                
+            }
+
+        }
+    });
+
+}
