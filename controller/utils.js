@@ -201,28 +201,48 @@ hashtableToArray = (nestedObject) => {
     return solution;
 }
 
-updateGrades = ( finalScore)  => {
-    let gradesKeys = Obhect.keys(finalScore);
 
-    gradesKeys.keys( grade => {
+// Changes grades object ( in index.html created )
+// with finalScore (in visual-global) hashmap in hashmap
+updateGrades = ( finalScore)  => {
+    let gradesKeys = Object.keys(finalScore);
+    
+    gradesKeys.forEach( grade => {
         //grado 0, grado 1, grado 2.... de final score.
         let data = finalScore[grade];
 
-
+debugger;
         for (monsterName in data) {
-
             let thisMonster = data[monsterName];
+            let monsterFound = grades[grade].find(m => m.id === thisMonster.id);
             if(thisMonster.grade === "very-low"){
 
+                updateMonster(monsterFound, 6);
+
             }else if(thisMonster.grade === "low"){
-            
+
+                updateMonster(monsterFound, 2);
+
             }else if (thisMonster.grade === "high"){
+
+                updateMonster(monsterFound, -4);
 
             }else if (thisMonster.grade === "very-high"){
                 
+                updateMonster(monsterFound, -5);
             }
 
         }
     });
 
 }
+
+
+updateMonster = (monsterObject, percentage) => {
+console.log(monsterObject);
+let percentageMultiplier =  1 + (percentage / 100);
+monsterObject.dmg += Math.floor(monster.dmg * percentageMultiplier );
+monsterObject.def += Math.floor(monster.def * percentageMultiplier * 100 ) / 100;
+monsterObject.hp += Math.floor(monster.hp * percentageMultiplier );
+}
+

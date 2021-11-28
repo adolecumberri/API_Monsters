@@ -218,14 +218,20 @@ function monsterAutomatization() {
       }
     }
   })
-// let filtered = finalScore
-do {
-  showAllMonsters();
+  // let filtered = finalScore
+  do {
+    showAllMonsters();
 
-  downloadJSON(`finalData${iterations}.json`, [...grades["grade0"], ...grades["grade1"], ...grades["grade2"], ...grades["grade3"], ...grades["grade4"]]);
-let finalScoreArray = hashtableToArray(finalScore);
-  downloadJSON(`winrates${iterations}.json`, finalScoreArray );
-}while(false)
+    downloadJSON(`finalData${iterations}.json`, [...grades["grade0"], ...grades["grade1"], ...grades["grade2"], ...grades["grade3"], ...grades["grade4"]]);
 
-  
+
+    let finalScoreArray = hashtableToArray(finalScore);
+    downloadJSON(`winrates${iterations}.json`, finalScoreArray);
+
+console.log("hola¿¿?");
+    updateGrades(finalScore);
+console.log("adios");
+  } while (false)
+
+
 }
