@@ -240,7 +240,7 @@ updateGrades = (finalScore) => {
 updateMonster = (monsterObject, percentage) => {
     let percentageMultiplier = 1 + (percentage / 100);
     monsterObject.dmg = Math.floor(monsterObject.dmg * percentageMultiplier);
-    if(monsterObject.dmg === 0 ) debugger;
+    if(monsterObject.dmg < 1 ) monsterObject.dmg++;
     monsterObject.def = Math.floor((monsterObject.def * percentageMultiplier) * 100) / 100;
     monsterObject.hp = Math.floor(monsterObject.hp * percentageMultiplier);
 }
