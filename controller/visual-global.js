@@ -61,7 +61,7 @@ function showAllMonsters() {
       if(!score[currentGrade][m.name]) score[currentGrade][m.name] = { total: 0, wins: 0 };
     const porcentaje = (score[currentGrade][m.name].wins / score[currentGrade][m.name].total) * 100;
   
-    updateFinalScore (porcentaje, currentGrade, m.name, m.id);
+    updateFinalScore (porcentaje, currentGrade, m.name, m.id, score[currentGrade][m.name].total);
     // score[currentGrade][m.name]['percentage'] = porcentaje;
     // score[currentGrade][m.name]['type'] = percentagecolor(porcentaje);
   
@@ -77,12 +77,13 @@ function showAllMonsters() {
   }
   
 
-  let updateFinalScore = (porcentaje, currentGrade, name, id) => {
+  let updateFinalScore = (porcentaje, currentGrade, name, id, total) => {
     if(!finalScore[currentGrade]) finalScore[currentGrade] = {};
     if(!finalScore[currentGrade][name]) finalScore[currentGrade][name] = {};
 
     finalScore[currentGrade][name]['percentage'] = Math.floor(porcentaje * 100) / 100;
     finalScore[currentGrade][name]['grade'] = percentagePerfection(porcentaje);
     finalScore[currentGrade][name]['id'] = id;
+    finalScore[currentGrade][name]['total'] = total;
 
   }

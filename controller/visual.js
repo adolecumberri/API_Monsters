@@ -1,5 +1,5 @@
 let generalGrade = 0
-let generalMonsterNumber = 100000
+let generalMonsterNumber = 10000
 let monsters = []
 let monstersAfterFight = []
 const variation = 0.15
@@ -92,6 +92,7 @@ function loadStats() {
 // crea las peleas
 // y revisa que nadie se quede sin combatir
 function createRandMonstersByGrade() {
+  monsters = []; //reinicio monsters
   monstersAfterFight = [] // reinicio var global
   const solution = []
   //Explicación por si miguel lee esto:
@@ -166,7 +167,7 @@ function monsterAutomatization() {
     grade3: [],
     grade4: [],
   } // reinicio var global
-  const solution = {
+  let solution = {
     grade0: [],
     grade1: [],
     grade2: [],
@@ -174,52 +175,66 @@ function monsterAutomatization() {
     grade4: [],
   }
 
+  const createMonsters = () => {
+    let keys = Object.keys(grades);
+    keys.forEach(grade => {
+
+      const gradeSelected = grades[grade];
+
+      // debugger;
+      for (let i = 0; i < generalMonsterNumber; i++) {
+        //de atras a alante: cojo un numero random desde 0 a la longitud del grado seleccionado. 
+        //ej: grado 0: 0->5, grado 1: 0 -> 18.
+        // entonces, del gradoSelected, que es una lista, cojo el monstruo que corresponda.
+        // y genero unas estadisticas variadas de ese monstuo seleccionado.
+        // despues creo un monstruo con esas estadisticas variadas en la lista llamada "solucion".
+        // despues solución se inserta en "monstruos" que son los que van a pelear entre ellos.
+        const customStats = createStatsVariation(gradeSelected[Math.floor(rand(gradeSelected.length))], variation)
+        solution[grade].push(createMonster(customStats))
+      }
+
+      monsters[grade] = solution[grade];
+
+    });
+  }
   //
-  let keys = Object.keys(grades);
-  keys.forEach(grade => {
 
-    const gradeSelected = grades[grade];
+  const executeFights = () => {
+    let monstersKeys = Object.keys(monsters);
 
-    // debugger;
-    for (let i = 0; i < generalMonsterNumber; i++) {
-      //de atras a alante: cojo un numero random desde 0 a la longitud del grado seleccionado. 
-      //ej: grado 0: 0->5, grado 1: 0 -> 18.
-      // entonces, del gradoSelected, que es una lista, cojo el monstruo que corresponda.
-      // y genero unas estadisticas variadas de ese monstuo seleccionado.
-      // despues creo un monstruo con esas estadisticas variadas en la lista llamada "solucion".
-      // despues solución se inserta en "monstruos" que son los que van a pelear entre ellos.
-      const customStats = createStatsVariation(gradeSelected[Math.floor(rand(gradeSelected.length))], variation)
-      solution[grade].push(createMonster(customStats))
-    }
+    // let executePvp = () => {
+    monstersKeys.forEach(key => {
+      while (monsters[key].length) {
+        const mon1 = monsters[key].splice(monsters[key].length * Math.random() | 0, 1)[0]
+        const mon2 = monsters[key].splice(monsters[key].length * Math.random() | 0, 1)[0]
 
-    monsters[grade] = solution[grade];
+        // TODO: eliminar. useless.
+        if (!mon1 || !mon2) {
+          debugger
+        }
 
-  })
-
-  let monstersKeys = Object.keys(monsters);
-
-  // let executePvp = () => {
-  monstersKeys.forEach(key => {
-    while (monsters[key].length) {
-      const mon1 = monsters[key].splice(monsters[key].length * Math.random() | 0, 1)[0]
-      const mon2 = monsters[key].splice(monsters[key].length * Math.random() | 0, 1)[0]
-
-      // TODO: eliminar. useless.
-      if (!mon1 || !mon2) {
-        debugger
+        const result = pvp(mon1, mon2)
+        if (result === 0) {
+          // empate. los devuelvo a la cola
+          monsters[key].push(mon1, mon2)
+        } else {
+          monstersAfterFight[key].push(mon1, mon2)
+        }
       }
+    });
 
-      const result = pvp(mon1, mon2)
-      if (result === 0) {
-        // empate. los devuelvo a la cola
-        monsters[key].push(mon1, mon2)
-      } else {
-        monstersAfterFight[key].push(mon1, mon2)
-      }
-    }
-  })
+  }
+
+  createMonsters();
+  executeFights();
+
+  let isFinished = false;
+
   // let filtered = finalScore
   do {
+
+
+
     showAllMonsters();
 
     downloadJSON(`finalData${iterations}.json`, [...grades["grade0"], ...grades["grade1"], ...grades["grade2"], ...grades["grade3"], ...grades["grade4"]]);
@@ -228,10 +243,41 @@ function monsterAutomatization() {
     let finalScoreArray = hashtableToArray(finalScore);
     downloadJSON(`winrates${iterations}.json`, finalScoreArray);
 
-console.log("hola¿¿?");
     updateGrades(finalScore);
-console.log("adios");
-  } while (false)
+
+    //alguien distinto de perfect? entonces no hemos acabado.
+    
+
+
+
+
+
+    monsters = [];
+    monstersAfterFight = {
+      grade0: [],
+      grade1: [],
+      grade2: [],
+      grade3: [],
+      grade4: [],
+    }
+
+    solution = {
+      grade0: [],
+      grade1: [],
+      grade2: [],
+      grade3: [],
+      grade4: [],
+    }
+
+    createMonsters();
+    executeFights();
+
+    iterations++;
+
+
+    isFinished = !finalScoreArray.some(data => data.grade !== "perfect");
+    console.log(isFinished);
+  } while (!isFinished)
 
 
 }
