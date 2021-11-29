@@ -234,23 +234,19 @@ function monsterAutomatization() {
   do {
 
 
-
+    
     showAllMonsters();
 
-    downloadJSON(`finalData${iterations}.json`, [...grades["grade0"], ...grades["grade1"], ...grades["grade2"], ...grades["grade3"], ...grades["grade4"]]);
+    //! downloadJSON(`finalData${iterations}.json`, [...grades["grade0"], ...grades["grade1"], ...grades["grade2"], ...grades["grade3"], ...grades["grade4"]]);
 
 
     let finalScoreArray = hashtableToArray(finalScore);
-    downloadJSON(`winrates${iterations}.json`, finalScoreArray);
+   //! downloadJSON(`winrates${iterations}.json`, finalScoreArray);
 
     updateGrades(finalScore);
 
     //alguien distinto de perfect? entonces no hemos acabado.
     
-
-
-
-
 
     monsters = [];
     monstersAfterFight = {

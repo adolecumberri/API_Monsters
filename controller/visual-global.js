@@ -6,7 +6,7 @@ const finalScore = {
 }
 
 function showAllMonsters() {
-    //! monstersDiv.innerHTML = ''
+    monstersDiv.innerHTML = ''
     let gradeKey = Object.keys(grades);
     let solution = [];
   
@@ -40,11 +40,11 @@ function showAllMonsters() {
         })
       );
   
-      //! const newDiv = document.createElement('div')
-      //! newDiv.setAttribute('class', 'monster-parent-div')
+      const newDiv = document.createElement('div')
+      newDiv.setAttribute('class', 'monster-parent-div')
   
       solution.forEach(m => {
-        //! newDiv.innerHTML += drawGrid(m, score, currentGrade);
+      newDiv.innerHTML += drawGrid(m, score, currentGrade);
 
         if(!score[currentGrade][m.name]) score[currentGrade][m.name] = { total: 0, wins: 0 };
         const porcentaje = (score[currentGrade][m.name].wins / score[currentGrade][m.name].total) * 100;
@@ -53,7 +53,7 @@ function showAllMonsters() {
       })
   
       // monstersDiv.innerHTML = ''
-      //! monstersDiv.appendChild(newDiv);
+      monstersDiv.appendChild(newDiv);
   
       //reseting solutions.
       solution = []
